@@ -14,6 +14,6 @@ COPY hostapd /etc/default/hostapd
 COPY dnsmasq.conf /etc/dnsmasq.conf
 
 COPY entrypoint.sh /entrypoint.sh
-COPY chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
