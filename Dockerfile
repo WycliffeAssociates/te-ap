@@ -7,12 +7,10 @@ RUN apt-get update --fix-missing && apt-get install -y \
     iptables \
     dnsmasq \
     iw \
+    nano \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY hostapd.conf /etc/hostapd/hostapd.conf
 COPY hostapd /etc/default/hostapd
-COPY dnsmasq.conf /etc/dnsmasq.conf
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

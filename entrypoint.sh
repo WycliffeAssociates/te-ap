@@ -31,14 +31,20 @@ term_handler() {
 # config UUID
 config_uuid() {
     UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1)
-    sed -i "s/ssid=.*/ssid=TranslationExchangeAP_$UUID/g" /etc/hostapd/hostapd.conf
-    echo "1" > /config_done
+    cp -f /etc/hostapd/hostapd.conf /tmp/hostapd.conf
+    sed -i "s/ssid=.*/ssid=TranslationExchangeAP_$UUID/g" /tmp/hostapd.conf
+    cp -f /tmp/hostapd.conf /etc/hostapd/hostapd.conf
+    echo "1" > /config_flag/config_done
 }
 
-sed -i "s/interface=.*/interface=$WLAN/g" /etc/dnsmasq.conf
-sed -i "s/interface=.*/interface=$WLAN/g" /etc/hostapd/hostapd.conf
+cp -f /etc/dnsmasq.conf /tmp/dnsmasq.conf
+cp -f /etc/hostapd/hostapd.conf /tmp/hostapd.conf
+sed -i "s/interface=.*/interface=$WLAN/g" /tmp/dnsmasq.conf
+sed -i "s/interface=.*/interface=$WLAN/g" /tmp/hostapd.conf
+cp -f /tmp/dnsmasq.conf /etc/dnsmasq.conf
+cp -f /tmp/hostapd.conf /etc/hostapd/hostapd.conf
 
-if [ ! -f /config_done ]; then
+if [ ! -f /config_flag/config_done ]; then
     config_uuid
 fi
 
