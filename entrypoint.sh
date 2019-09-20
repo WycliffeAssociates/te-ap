@@ -15,10 +15,6 @@ term_handler() {
     /etc/init.d/dnsmasq stop
     /etc/init.d/dbus stop
 
-    iptables -t nat -D POSTROUTING -o $ETH -j MASQUERADE
-    iptables -D FORWARD -i $ETH -o $WLAN -m state --state RELATED,ESTABLISHED -j ACCEPT
-    iptables -D FORWARD -i $WLAN -o $ETH -j ACCEPT
-
     kill -SIGTERM "$pid"
     wait "$pid"
   fi
