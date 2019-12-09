@@ -1,4 +1,4 @@
-FROM debian:slim-stretch
+FROM debian:stretch-slim
 
 RUN apt-get update --fix-missing && apt-get install -y \
     dbus \
