@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM debian:stretch-slim
 
 RUN apt-get update --fix-missing && apt-get install -y \
     hostapd \
