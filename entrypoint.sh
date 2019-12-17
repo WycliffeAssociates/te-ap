@@ -30,9 +30,9 @@ term_handler() {
 
 # config UUID
 config_uuid() {
-    UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1)
+    UUID=$(cat /dev/urandom | tr -dc '0-9' | fold -w 4 | head -n 1)
     cp -f /etc/hostapd/hostapd.conf /tmp/hostapd.conf
-    sed -i "s/ssid=.*/ssid=TranslationExchangeAP_$UUID/g" /tmp/hostapd.conf
+    sed -i "s/ssid=.*/ssid=BTT_$UUID/g" /tmp/hostapd.conf
     cp -f /tmp/hostapd.conf /etc/hostapd/hostapd.conf
     echo "1" > /config_flag/config_done
 }
