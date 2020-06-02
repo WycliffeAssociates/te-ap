@@ -1,2 +1,1 @@
-# te-ap
-New tE Access Point Dockerfile and required components
+moved to https://github.com/Bible-Translation-Tools/BTT-Exchanger
